@@ -11,7 +11,7 @@ export type MessageAction = {
 export const createMessageDispatch = (message: Message) =>
 {
     return {
-        type: MessageActionTypes.FETCH_MESSAGES,
+        type: MessageActionTypes.CREATE_MESSAGE,
         payload: message
     };
 };
@@ -24,17 +24,17 @@ export const fetchMessageDispatch = (messages: Message[]) =>
     };
 };
 
-export const createMessage = (message: Message) => {
-    return async (dispatch: React.Dispatch<MessageAction>) => {
+export const createMessage = async (message: Message, dispatch: React.Dispatch<MessageAction>) => {
         try {
-            const response = await axios.post(`${MESSAGE_ENDPOINT}/create`, message);
-            dispatch(createMessageDispatch(response.data.message));
+            const response = await axios.post(`${MESSAGE_ENDPOINT}/create`, message)
+                ;
+            return dispatch(createMessageDispatch(response.data.message));
         }
         catch (error) {
             throw (error);
         }
     };
-};
+
 
 export const fetchAllMessages =  async (dispatch: any) => {
     try {
