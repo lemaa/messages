@@ -1,6 +1,6 @@
 export type Message = {
     _id: string;
-    text: string;
+    message: string;
     isMessagePrivate: boolean;
     createdAt: Date
 };

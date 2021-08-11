@@ -36,14 +36,13 @@ export const createMessage = (message: Message) => {
     };
 };
 
-export const fetchAllMessages = () => {
-    return async (dispatch: any) => {
-        try {
-            const response = await axios.get(`${MESSAGE_ENDPOINT}/messages`);
-            dispatch(fetchMessageDispatch(response.data));
+export const fetchAllMessages =  async (dispatch: any) => {
+    try {
+        const response = await axios.get(`${MESSAGE_ENDPOINT}/messages`);
+
+            return dispatch(fetchMessageDispatch(response.data));
         }
         catch (error) {
             throw (error);
         }
     };
-};

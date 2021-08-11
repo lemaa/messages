@@ -1,43 +1,44 @@
 
-import React, { useEffect } from "react";
+import React , { useEffect} from "react";
 import Col from "react-bootstrap/Col";
-// import moment from "moment";
-// import allActions from "../../actions";
+import { Message as MsgComponent } from "../../components/Message";
+import { fetchAllMessages, createMessage } from "../../actions/messageActions";
+import { useMessageState, useMessageDispatch } from "../../context/Messages";
+import { Message } from "../../models/Message";
 import {
   MainContainer,
   NoMessages,
   MessageSection,
   FormSection,
 } from "./style";
-import { useMessageState } from "../../context/Messages";
+
 
 const Home: React.FunctionComponent = () => {
    const listMessages = useMessageState();
-    console.log(listMessages)
+   const dispatch = useMessageDispatch();
+
+  React.useEffect(() => {
+    listMessages.length === 0 && fetchAllMessages(dispatch);
+  }, [dispatch, listMessages]);
 
   return (
     <MainContainer className="main-section" fluid>
       <MessageSection>
-              <Col>
-                  aez
-          {/* {messages.length > 0 &&
-            messages.map((message) => (
-              <Message
-                key={message._id.toString()}
-                id={message._id}
-                text={message.message}
-                isMessagePrivate={message.isMessagePrivate}
-                createdAt={moment(message.createdAt).fromNow()}
-              ></Message>
+        <Col>
+          {listMessages.length > 0 &&
+            listMessages.map((message: Message) => (
+              <MsgComponent
+                    key={message._id.toString()}
+                    message={message}
+              ></MsgComponent>
             ))}
-          {messages.length === 0 && (
+          {listMessages.length === 0 && (
             <NoMessages>No messages to display :(</NoMessages>
-          )}*/}
-        </Col> 
+          )}
+        </Col>
       </MessageSection>
       <FormSection>
         <Col>
-          {/* <MessageForm submitClickHandler={CreateMessageHandler} /> */}
         </Col>
       </FormSection>
     </MainContainer>

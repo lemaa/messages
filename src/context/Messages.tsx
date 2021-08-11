@@ -14,15 +14,8 @@ export const MessageDispatch = React.createContext<
   React.Dispatch<MessageAction> | undefined
     >(undefined);
 
-const initialState: Message = {
-    _id: '',
-    text: '',
-    isMessagePrivate: false,
-    createdAt: new Date()
-};
-
 const MessageProvider = ({ children }: MessageProviderProps) => {
-    const [state, dispatch] = React.useReducer(messageReducer, initialState);
+    const [state, dispatch] = React.useReducer(messageReducer, []);
     return (
         <MessageStateContext.Provider value={state}>
             <MessageDispatch.Provider value={dispatch}>
