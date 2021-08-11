@@ -20,9 +20,9 @@ ReactDOM.render(
                     <Route exact path="/" component={Home}></Route>
                 </Switch>
             </Router>
-            <Footer>
+            {/* <Footer>
                 <p> made by Amel Fezai</p>
-            </Footer>
+            </Footer> */}
         </MessageProvider>
   </React.StrictMode>,
   document.getElementById("root")
