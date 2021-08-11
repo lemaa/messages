@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col';
 import { useForm } from 'react-hook-form';
 import { SwitchButtons } from '../SwitchButtons';
 import { IProps } from "./MessageForm";
-import { Errors, FormContainer, SubmitButton } from "./Style";
+import { Errors, FormContainer } from "./Style";
+import { Button } from "../Buttons";
 
 type MessageFormType = {
   text: string;
@@ -60,12 +61,12 @@ const submitClickHandler = (data: MessageFormType, e: any) => {
             </Form.Group>
             <Form.Group as={Row} controlId="buttons" className="float-right">
               <Col xs={12}>
-                <SubmitButton
+                <Button
                   buttonType="submit"
                   classIdentifier="btn btn-dark"
                 >
                   <>Post</>
-                </SubmitButton>
+                </Button>
                 <SwitchButtons
                   buttonType={"radio"}
                   nameIdentifier={"privacyOptions"}

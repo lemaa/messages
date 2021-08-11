@@ -5,6 +5,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 const ToggleContainer = styled(ToggleButtonGroup)`
     align-items: center;
     margin: 0 5px;
+    margin-top: 5px;
     overflow: hidden;
     position: relative;
     background-color: #222;
